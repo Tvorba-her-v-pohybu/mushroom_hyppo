@@ -24,12 +24,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	$CharacterBody2D/Camera2D/Label.visible = false
-
-
-func _on_jump_button_pressed() -> void:
-	var ev = InputEventAction.new()
-	# Set as ui_left, pressed.
-	ev.action = "ui_accept"
-	ev.pressed = true
-	# Feedback.
-	Input.parse_input_event(ev)
