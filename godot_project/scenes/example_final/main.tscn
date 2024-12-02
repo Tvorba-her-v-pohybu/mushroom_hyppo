@@ -1,0 +1,148 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyw4xgt4fqsnv"]
+
+[ext_resource type="Texture2D" uid="uid://6l6ogdgeon7q" path="res://assets/characters/bear.png" id="1_g4l45"]
+[ext_resource type="PackedScene" uid="uid://dryi0c2vlsjvk" path="res://scenes/example_final/wall.tscn" id="2_dbpjf"]
+[ext_resource type="Script" path="res://scenes/example_final/main_char.gd" id="2_u5hpa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljpyq"]
+radius = 16.0312
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfnnx"]
+size = Vector2(38.8793, 38.75)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MainChar" type="CharacterBody2D" parent="."]
+script = ExtResource("2_u5hpa")
+
+[node name="Camera2D" type="Camera2D" parent="MainChar"]
+
+[node name="Bear" type="Sprite2D" parent="MainChar"]
+scale = Vector2(0.246753, 0.242424)
+texture = ExtResource("1_g4l45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainChar"]
+shape = SubResource("CircleShape2D_ljpyq")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(-2, 52)
+scale = Vector2(4.08, 1)
+
+[node name="Wall4" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(-2, -157)
+scale = Vector2(4.08, 1)
+
+[node name="Wall12" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(19, 146)
+scale = Vector2(6.30488, 1.31547)
+
+[node name="Wall16" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(6, -522)
+scale = Vector2(6.46488, 1.31547)
+
+[node name="Wall7" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(3, -420)
+scale = Vector2(4.08, 1)
+
+[node name="Wall3" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(215, -139)
+rotation = 1.5708
+scale = Vector2(4.08, 1)
+
+[node name="Wall15" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(318, -303)
+rotation = 1.5708
+scale = Vector2(4.08, 1)
+
+[node name="Wall14" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(319, 60)
+rotation = 1.5708
+scale = Vector2(1.64621, 1.2934)
+
+[node name="Wall5" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(-306, -185)
+rotation = 1.5708
+scale = Vector2(6.95999, 1)
+
+[node name="Wall6" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(-194, -250)
+rotation = 1.5708
+scale = Vector2(1.76, 1)
+
+[node name="Wall8" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(-84, -320)
+rotation = 1.5708
+scale = Vector2(1.76, 1)
+
+[node name="Wall10" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(68, -202)
+rotation = 1.5708
+scale = Vector2(0.819844, 1.1595)
+
+[node name="Wall11" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(66, -367)
+rotation = 1.5708
+scale = Vector2(0.819844, 1.1595)
+
+[node name="Wall2" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(-79, -54)
+scale = Vector2(4.08, 1)
+
+[node name="Wall13" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(276, -12)
+scale = Vector2(1.18631, 1.23549)
+
+[node name="Wall9" parent="Walls" instance=ExtResource("2_dbpjf")]
+position = Vector2(67, -248)
+scale = Vector2(1.62505, 1.16572)
+
+[node name="Finish" type="Area2D" parent="."]
+position = Vector2(330, -112)
+scale = Vector2(2.32, 2.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Finish"]
+position = Vector2(22.4138, 22.0833)
+shape = SubResource("RectangleShape2D_sfnnx")
+
+[node name="ColorRect" type="ColorRect" parent="Finish"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 42.0
+color = Color(0.301961, 0.631373, 0, 0.635294)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -34.0
+offset_right = 89.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(9.91493e-06, 0.773823, 1.54018e-06, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "VÝHRA!"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Finish" to="MainChar" method="_on_finish_body_entered"]
